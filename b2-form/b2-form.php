@@ -75,7 +75,7 @@ span.psw {
 <center><h1 style="color:rgb(83, 18, 172);background: #ED1E79;">Validate form</h1></center>
 
 <form action="output.php" method="post"> 
-
+    <br>
     <span id="thong_tin">Tên</span><span class="required">*</span>
     <input id="ten"  placeholder="Họ và tên" type="text" name="ten"> 
     <div class="error" id="loi_ten"></div>
@@ -138,7 +138,7 @@ span.psw {
             //check gioi tinh
             let mang_gioi_tinh = document.getElementsByName("gioi_tinh");
             let ktra = false;
-            for(let i =0; i<mang_gioi_tinh.length;i++){
+            for(let i =0; i < mang_gioi_tinh.length;i++){
                 if(mang_gioi_tinh[i].checked){
                     ktra = true;
                 }
