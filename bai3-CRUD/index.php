@@ -9,17 +9,36 @@
 <body>
     <?php
     require 'connect.php';// chen file dung chung
+    $trang = 1;
+    if(isset($_GET['trang'])){
+        $trang = $_GET['trang'];
+    }
+        
     $tim_kiem = '';
     if(isset($_GET['tim_kiem'])){
         $tim_kiem = $_GET['tim_kiem'];
         
     }
+
+    $sql_so_bai_dang = "select count(*) from tin_tuc
+    where
+    tieu_de like '%$tim_kiem%' ";
+    $mang_so_bai_dang = mysqli_query($ket_noi,$sql_so_bai_dang);
+    $ket_qua_so_bai_dang = mysqli_fetch_array($mang_so_bai_dang);
+    $so_bai_dang = $ket_qua_so_bai_dang['count(*)'];
+
+    $so_bai_dang_tren_1_trang = 1;// vi du so bai dang tren 1 trang la 2
+
+    $so_trang = ceil($so_bai_dang / $so_bai_dang_tren_1_trang);
+    // cong thuc phan trang : so_bai_bi_bo_qua = so_bai_tren_1_trang * (so_trang - 1);
+    $bo_qua = $so_bai_dang_tren_1_trang * ($trang - 1);
+
+    
         
-        $sql = "select * from tin_tuc
-        where
-        tieu_de like '%$tim_kiem%' ";
-    
-    
+    $sql = "select * from tin_tuc
+    where
+    tieu_de like '%$tim_kiem%' 
+    limit $so_bai_dang_tren_1_trang offset $bo_qua";
     
     
     $ket_qua = mysqli_query($ket_noi,$sql);
@@ -74,5 +93,10 @@
     <?php } ?>
 
 </table>
+<?php for($i = 1;$i <= $so_trang;$i++){ ?>
+    <a href="?trang=<?php echo $i ?>&tim_kiem=<?php echo $tim_kiem ?>">
+        <?php echo $i ?>
+    </a>
+<?php } ?>
 </body>
 </html>
