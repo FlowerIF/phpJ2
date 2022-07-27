@@ -161,11 +161,11 @@ span.psw {
             }
 
             //check mật khẩu
-            let mat_khau = document.getElementById("mat_khau").value;
+            let mat_khau = document.getElementById("mat_khau");
             let strongRegex = new RegExp("^(?=.{14,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
             let mediumRegex = new RegExp("^(?=.{10,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
             let enoughRegex = new RegExp("(?=.{8,}).*", "g");
-            if(mat_khau.length == 0){
+            if(mat_khau.value.length == 0){
                 document.getElementById("loi_mat_khau").innerHTML = 'Mật khẩu không được để trống';
                 check = true;
             }else if(false == enoughRegex.test(mat_khau.value)){
