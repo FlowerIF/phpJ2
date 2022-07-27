@@ -3,9 +3,8 @@ $tieu_de = $_POST['tieu_de'];
 $noi_dung = $_POST['noi_dung'];
 $anh = $_POST['anh'];
 
-$ket_noi = mysqli_connect('localhost','root','','j2school');//kett noi database
-mysqli_set_charset($ket_noi,'utf8');// tiếng việt cho kết nối 
 
+require 'connect.php';// chen file dung chung
 
 $sql = "insert into tin_tuc(tieu_de,noi_dung,anh)
 value('$tieu_de','$noi_dung','$anh')";//truy van lay toan bo thong tin nhap vao chen vao cau truy van

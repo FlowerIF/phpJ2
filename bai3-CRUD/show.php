@@ -3,8 +3,7 @@
 <head>
 <?php
     $ma = $_GET['ma'];// lay ma tu thanh dia chi
-    $ket_noi = mysqli_connect('localhost','root','','j2school');
-    mysqli_set_charset($ket_noi,'utf8');
+    require 'connect.php';// chen file dung chung or dùng require_once() khi muốn file chỉ dc thêm 1 lần
 
     $sql = "select * from tin_tuc
     where ma = $ma";
@@ -19,6 +18,7 @@
     <title><?php echo $bai_tin_tuc['tieu_de']?></title>
 </head>
 <body>
+    <a href="index.php">Trang chủ</a>
     <h1>
         <?php echo $bai_tin_tuc['tieu_de'] ?>
     </h1>
@@ -28,6 +28,6 @@
     </p>
     
     <img src="<?php echo $bai_tin_tuc['anh'] ?>" alt="" height="50%">
-
+    
 </body>
 </html>
