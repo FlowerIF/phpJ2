@@ -8,16 +8,39 @@
 </head>
 <body>
     <form method="post" action="process_insert.php">
-        Tiêu đề
-        <input type="text" name="tieu_de" id="">
-        <br>
-        Nội dung
-        <textarea name="noi_dung" id="" cols="30" rows="10"></textarea>
-        <br>
-        link ảnh
-        <input type="text" name="anh" id="">
-        <br>
-        <button>Thêm</button>
+        <table>
+            <tr>
+                <td>
+                    Tiêu đề
+                </td>
+                <td>
+                    <input type="text" name="tieu_de" id="">
+                </td>
+                
+            </tr>
+            <tr>
+                <td>
+                    Nội dung
+                </td>
+                <td>
+                    <textarea name="noi_dung" id="" cols="30" rows="10"></textarea>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>
+                    link ảnh
+                </td>
+                <td>
+                    <input type="text" name="anh" id="">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <button>Thêm</button>
+                </td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>
