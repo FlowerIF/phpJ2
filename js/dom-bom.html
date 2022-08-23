@@ -1,0 +1,52 @@
+<!-- 
+DOM: document object
+BOM: browser object  
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>get ID</title>
+</head>
+<body>
+    <h1>nhập link lấy ID</h1>
+    <input type="text" id="ID">
+    <button id="btn" type="submit" onclick="return get_ID()">Get ID</button>
+    <div>ID của bạn là</div> <span id="ket_qua"></span>
+   
+
+    <script>
+        let input = document.getElementById('ID')
+        input.addEventListener('keypress',function(event){
+            if(event.key === 'Enter'){
+                event.preventDefault()
+                document.getElementById('btn').click()
+            }
+        })
+        function get_ID(){
+            let check = false
+            let link = document.getElementById('ID').value
+            let regex_ID = /^(?:https:\/\/)(?:www|m|x)(?:\.facebook\.com\/)(?:(?:groups\/?|profile\.php\?id\=?)?)([a-z0-9\.]*)(?:\/?)$/
+            let ID = link.match(regex_ID)
+            if(ID === null){
+                document.getElementById('ket_qua').innerHTML = 'link không hợp lệ'
+                document.getElementById('ket_qua').style.color = 'red'
+                check = true
+            }else{
+                document.getElementById('ket_qua').innerHTML = `${ID[1]}`
+                document.getElementById('ket_qua').style.color = 'green'
+                document.getElementById('ID').innerHTML = ''
+            }
+            if(check){
+                return false
+            }
+
+
+
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!-- <form action="">
+nhập số
+<input type="number" id="so">
+<button id="btn" type="button" onclick="nhap()">nhập</button>
+<button type="button" onclick="in_ra()">in danh sach</button>
+<div id="ket_qua"></div>
+<div id="ket_qua_chan"></div>
+<div id="ket_qua_le"></div>
+<div id="so_lon_nhat"></div>
+<div id="so_ngto"></div>
+<div id="tong"></div>
+</form>
+
+
+<script>
+    let input = document.getElementById('so')
+    input.addEventListener('keypress',function(event){
+        if(event.key === 'Enter'){
+            event.preventDefault()
+            document.getElementById('btn').click()
+        }
+    })
+
+    let mang =[]
+    let mang_chan = [],mang_le=[],mang_ngto=[]
+    let sum = 0;
+    function nhap(){
+        let so = parseFloat(document.getElementById('so').value);
+        mang.push(so)
+        document.getElementById('so').value=''
+        sum += so
+    }
+    function ngto(m){
+        
+        if(m < 2){
+            return false
+        }
+        for(let i = 2 ;i < m-1 ;i++){
+            if(m % i == 0 ){
+                return false
+            }
+        }
+        return true
+    }
+    
+    function in_ra(){
+        for(let i = mang.length - 1;i>0;i--){
+            for(let j = 0;j<i;j++){
+                if(mang[j] > mang[j+1]){
+                    let tmp = mang[j]
+                    mang[j] = mang[j+1]
+                    mang[j+1] = tmp
+                }
+            }
+        }
+        let chuoi = '',chuoi_chan ='',chuoi_le ='',chuoi_ngto='';
+        for(let i = 0 ;i < mang.length;i++){
+            chuoi += mang[i] + ' ';
+            if(mang[i] % 2 == 0){
+                mang_chan.push(mang[i]);
+            }else{
+                mang_le.push(mang[i]);
+            }
+            if(ngto(mang[i])){
+                mang_ngto.push(mang[i]);
+            }
+        }
+        for(let i = 0;i < mang_chan.length;i++){
+            chuoi_chan += mang_chan[i] + ' '
+        }
+        for(let i = 0;i < mang_le.length;i++){
+            chuoi_le += mang_le[i] + ' '
+        }
+        for(let i = 0;i < mang_ngto.length;i++){
+            chuoi_ngto += mang_ngto[i] + ' '
+        }
+
+        document.getElementById('ket_qua').innerHTML = chuoi;
+        document.getElementById('ket_qua_chan').innerHTML = chuoi_chan;
+        document.getElementById('ket_qua_le').innerHTML = chuoi_le;
+        document.getElementById('so_ngto').innerHTML = chuoi_ngto;
+        document.getElementById('tong').innerHTML = sum;
+    }
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai 2</title>
+</head>
+<body>
+    <form action="">
+        Nhập số phần tử:
+        <input type="number" id="so_phan_tu">
+        <button id="btn" type="button" onclick="in_ra()">Phát sinh và tính toán</button>
+        mảng
+        <div id="mang_ngau_nhien"></div>
+        GTLN
+        <div id="gtln"></div>
+        GTNN
+        <div id="gtnn"></div>
+        tổng mảng
+        <div id="tong"></div>
+    </form>
+
+
+    <script>
+        let input = document.getElementById('so_phan_tu')
+        input.addEventListener('keypress',function(event){
+            if(event.key === 'Enter'){
+                event.preventDefault()
+                document.getElementById('btn').click()
+            }
+        })
+        
+        function in_ra(){
+            let so = document.getElementById('so_phan_tu').value
+            let mang =[],sum = 0
+            for(let i = 0;i< so;i++){
+                
+                mang.push(Math.floor(Math.random() * 11))
+            }
+            let max = mang[0],min = mang[0]
+            for(let i = 0;i<so;i++){
+                if(mang[i] > max){
+                    max = mang[i]
+                }
+                if(mang[i] < min){
+                    min = mang[i]
+                }
+                sum += mang[i]
+            }
+            document.getElementById('mang_ngau_nhien').innerHTML = mang
+            document.getElementById('gtln').innerHTML = max
+            document.getElementById('gtnn').innerHTML = min
+            document.getElementById('tong').innerHTML = sum
+        }
+        
+    </script>
+</body>
+</html>

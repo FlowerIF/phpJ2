@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validate</title>
+</head>
+<body>
+    
+<form action="">
+    Tên 
+    <input type="text" name="" id="ten">
+    <span id="error_ten"></span>
+    <br>
+    Ngay sinh
+    <input type="date" name="" id="ngay_sinh">
+    <span id="error_ngay_sinh"></span>
+    <br>
+    gioi tinh
+    <input type="radio" name="gioi_tinh" id="">Nam
+    <input type="radio" name="gioi_tinh" id="">Nu
+    <span id="error_gioi_tinh"></span>
+    <br>
+    Email
+    <input type="email" name="" id="email">
+    <span id="error_email"></span>
+    <br>
+    Mat khau
+    <input type="password" name="" id="mat_khau">
+    <span id="error_mat_khau"></span>
+    <br>
+    Lop
+    <select name="" id="">
+        <option value="">Lap Trinh</option>
+        <option value="">Bao Mat</option>
+    </select>
+    <br>
+    <button type="submit" onclick="return kiem_tra()">dang ky</button>
+</form>
+
+
+    <script>
+        function kiem_tra(){
+            let check_loi = false
+            //ten
+            
+
+            let ten = document.getElementById('ten').value
+            let regex_ten = /^[AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+ [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+(?: [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]*)*$/
+            if(ten.length === 0){
+                document.getElementById('error_ten').innerHTML='Tên không được để trống'
+                check_loi = true
+            }else if(regex_ten.test(ten) == false){
+                document.getElementById('error_ten').innerHTML='Tên khong hop le'
+                check_loi = true
+            }else{
+                document.getElementById('error_ten').innerHTML=''
+            }
+            
+            
+            //ngay sinh
+            let ngay_sinh = document.getElementById('ngay_sinh').value
+            if(ngay_sinh.length === 0){
+                document.getElementById('error_ngay_sinh').innerHTML = 'Ngay sinh khong duoc de trong'
+                check_loi = true
+            }else{
+                document.getElementById('error_ngay_sinh').innerHTML = ''   
+            }
+
+            // gioi tinh
+            let mang_gioi_tinh =document.getElementsByName('gioi_tinh')
+            let ktra_mang_gioi_tinh = false
+            for(let i = 0;i<mang_gioi_tinh.length;i++){
+                if(mang_gioi_tinh[i].checked){
+                    ktra_mang_gioi_tinh = true
+                }
+            }
+            if(ktra_mang_gioi_tinh == false){
+                document.getElementById('error_gioi_tinh').innerHTML = 'Gioi tinh khong duoc de trong'
+                check_loi = true
+            }else{
+                document.getElementById('error_gioi_tinh').innerHTML = ''   
+            }
+
+            //email
+            let email = document.getElementById('email').value
+            let regex_email = /^[a-zA-Z0-9\_]+@[a-z]+\.[a-z]+$/
+            if(email.length === 0){
+                document.getElementById('error_email').innerHTML = 'Email khong duoc de trong'
+                check_loi = true
+            }else if(regex_email.test(email) == false){
+                document.getElementById('error_email').innerHTML = 'Email khong hop le'
+                check_loi = true
+            }
+            else{
+                document.getElementById('error_email').innerHTML = ''   
+            }
+
+            // password
+            let password = document.getElementById('mat_khau').value
+            let regex_pass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+            if(password.length === 0){
+                document.getElementById('error_mat_khau').innerHTML = 'Mat khau khong duoc de trong'
+                check_loi = true
+            }else if(regex_pass.test(password) == false){
+                document.getElementById('error_mat_khau').innerHTML = 'Mat khau phai co it nhat 8 ky tu bao gom ky tu viet hoa , viet thuong va ky tu dac biet, khong chua dau cach'
+                check_loi = true
+            }
+            else{
+                document.getElementById('error_mat_khau').innerHTML = ''   
+            }
+
+            //
+
+
+
+
+            
+            if(check_loi){
+                return false
+            }
+        }
+
+    </script>
+</body>
+
+</html>
